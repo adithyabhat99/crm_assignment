@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+// middleware to authenticate routes
 module.exports = function (req, res, next) {
   const secret = process.env.AUTH_SECRET;
   let token = req.headers["access-token"];

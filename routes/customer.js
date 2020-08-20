@@ -128,4 +128,16 @@ router.delete("/:id", tokenHandler, async (req, res) => {
   }
 });
 
+// get list of customers
+router.get("/", tokenHandler, async (req, res) => {
+  try {
+    const userId = req.decoded["id"];
+    const customers = await models.Customer.findAll({ where: { userId } });
+    res.status(200).json({ message: "success", data: customers });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "error occured" });
+  }
+});
+
 module.exports = router;

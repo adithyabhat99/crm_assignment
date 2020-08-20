@@ -1,6 +1,6 @@
 const express = require("express");
 const { models, sequelize } = require("./models");
-const { user, customer, auth } = require("./routes");
+const { user, customer, communication, auth } = require("./routes");
 const app = express();
 
 app.use(express.json());
@@ -19,6 +19,12 @@ app.use((req, res, next) => {
 app.use("/api/user", user);
 app.use("/api/auth", auth);
 app.use("/api/customer", customer);
+app.use("/api/communication", communication);
+
+// default
+app.get("/", (req, res) => {
+  res.status(201).json({ message: "Hi, this is CRM API" });
+});
 
 sequelize.sync({ force: true }).then(() => {
   const port = process.env.PORT || 7000;
