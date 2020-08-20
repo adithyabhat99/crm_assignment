@@ -4,7 +4,7 @@ const { user, customer, auth } = require("./routes");
 const app = express();
 
 app.use(express.json());
-// Middleware added to all routes to support Cross Origin Resource Sharing.
+// Add cors headers
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -16,9 +16,9 @@ app.use((req, res, next) => {
 });
 
 // routes
-app.use("/user", user);
-app.use("/auth", auth);
-app.use("/customer", customer);
+app.use("/api/user", user);
+app.use("/api/auth", auth);
+app.use("/api/customer", customer);
 
 sequelize.sync({ force: true }).then(() => {
   const port = process.env.PORT || 7000;
