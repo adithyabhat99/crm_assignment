@@ -1,9 +1,12 @@
+const mailer = require("nodemailer");
+const nodemailerSendgrid = require("nodemailer-sendgrid");
+const transporter = mailer.createTransport(
+  nodemailerSendgrid({
+    apiKey: process.env.SENDGRID_API_KEY,
+  })
+);
+
 module.exports = (email, subject, text) => {
-  const mailer = require("nodemailer");
-  const config = require("./email_config");
-
-  const transporter = mailer.createTransport(config);
-
   const mailOptions = {
     from: "roofandbunk@gmail.com",
     to: email,
@@ -12,8 +15,8 @@ module.exports = (email, subject, text) => {
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log("error sending mail");
-      console.log(error)
-    } else console.log("Email Sent");
+      console.log("ERROR SENDING MAIL");
+      console.log(error);
+    } else console.log("EMAIL SENT");
   });
 };
