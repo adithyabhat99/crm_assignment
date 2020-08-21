@@ -91,13 +91,13 @@ const emailAndUpdate = async (customerId, userId, customerEmail, userEmail) => {
     email(
       customerEmail,
       `communication summary with @${userEmail}`,
-      JSON.stringify(summary)
+      JSON.stringify(summary, null, 3)
     );
     // send email to customer
     email(
       userEmail,
       `communication summary with @${customerEmail}`,
-      JSON.stringify(summary)
+      JSON.stringify(summary, null, 3)
     );
   }
 };

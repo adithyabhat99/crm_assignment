@@ -53,6 +53,7 @@ wrapper = () => {
         delay: 60000,
         type: "fixed",
       })
+      .unique("every")
       .priority("normal");
 
     //schedule a job then

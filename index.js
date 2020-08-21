@@ -1,4 +1,5 @@
 const express = require("express");
+const winston = require("winston");
 const { models, sequelize } = require("./models");
 const { user, customer, communication, auth } = require("./routes");
 const app = express();
@@ -15,6 +16,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// logger(console log in development)
+const logger = winston.createLogger({
+  transports: [
+    process.env.DEPLOYEMENT === "DEVELOPMENT"
+      ? new winston.transports.Console()
+      : new winston.transports.File({ filename: "requests.log" }),
+  ],
+});
+app.use((req, res, done) => {
+  logger.info(req.originalUrl);
+  done();
+});
+
 // routes
 app.use("/api/user", user);
 app.use("/api/auth", auth);
@@ -26,6 +40,7 @@ app.get("/", (req, res) => {
   res.status(201).json({ message: "Hi, this is CRM API" });
 });
 
+// redis installed only in local
 if (process.env.DEPLOYEMENT === "DEVELOPMENT") require("./kue/task");
 
 // sequelize.sync().then(() => {
