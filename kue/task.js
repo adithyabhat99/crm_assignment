@@ -1,7 +1,7 @@
 const kue = require("kue-scheduler");
-const worker = require("./worker");
 
 try {
+  const worker = require("./worker");
   const Queue = kue.createQueue();
 
   //processing jobs
@@ -56,7 +56,7 @@ try {
 
   //schedule a job then
   Queue.every("30 seconds", job);
-  
+
   // every day
   // Queue.every("86400 seconds", job);
 } catch (error) {
