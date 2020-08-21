@@ -24,6 +24,10 @@ const customer = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 7,
     },
+    last_reminded: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   });
   Customer.associate = (models) => {
     Customer.belongsTo(models.User);
