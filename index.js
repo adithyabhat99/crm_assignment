@@ -1,7 +1,7 @@
 const express = require("express");
 const winston = require("winston");
 const { models, sequelize } = require("./models");
-const { user, customer, communication, auth } = require("./routes");
+const { user, customer, communication } = require("./routes");
 const app = express();
 
 app.use(express.json());
@@ -31,7 +31,6 @@ app.use((req, res, done) => {
 
 // routes
 app.use("/api/user", user);
-app.use("/api/auth", auth);
 app.use("/api/customer", customer);
 app.use("/api/communication", communication);
 
