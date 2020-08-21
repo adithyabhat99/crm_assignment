@@ -3,37 +3,22 @@ const customer = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     gstno: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     reminder_frequency: {
       type: DataTypes.INTEGER,
@@ -42,6 +27,7 @@ const customer = (sequelize, DataTypes) => {
   });
   Customer.associate = (models) => {
     Customer.belongsTo(models.User);
+    Customer.hasMany(models.Communication, { onDelete: "CASCADE" });
   };
   return Customer;
 };

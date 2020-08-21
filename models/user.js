@@ -3,32 +3,20 @@ const user = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     email: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     verification_code: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     verified: {
       type: DataTypes.BOOLEAN,
@@ -37,6 +25,7 @@ const user = (sequelize, DataTypes) => {
   });
   User.associate = (models) => {
     User.hasMany(models.Customer, { onDelete: "CASCADE" });
+    User.hasMany(models.Communication, { onDelete: "CASCADE" });
   };
   return User;
 };

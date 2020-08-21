@@ -26,7 +26,8 @@ app.get("/", (req, res) => {
   res.status(201).json({ message: "Hi, this is CRM API" });
 });
 
-sequelize.sync({ force: true }).then(() => {
+// { force: true }
+sequelize.sync().then(() => {
   const port = process.env.PORT || 7000;
   app.listen(port, () => {
     console.log(`Server started at ${port}`);
