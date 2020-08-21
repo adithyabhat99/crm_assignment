@@ -26,8 +26,7 @@ app.get("/", (req, res) => {
   res.status(201).json({ message: "Hi, this is CRM API" });
 });
 
-require("./kue/task");
-
+if (process.env.DEPLOYEMENT === "DEVELOPMENT") require("./kue/task");
 
 // sequelize.sync().then(() => {
 sequelize.sync({ force: true }).then(() => {
