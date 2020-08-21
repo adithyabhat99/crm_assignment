@@ -29,7 +29,8 @@ router.post("/", tokenHandler, async (req, res) => {
       gstno,
       reminder_frequency,
       userId,
-      last_reminded: new Date().toISOString(),
+      // to_remind: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      to_remind: new Date().toISOString(),
     });
     res.status(201).json({ message: "customer created" });
   } catch (error) {

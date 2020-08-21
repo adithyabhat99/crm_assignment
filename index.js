@@ -26,7 +26,10 @@ app.get("/", (req, res) => {
   res.status(201).json({ message: "Hi, this is CRM API" });
 });
 
-// { force: true }
+require("./kue/task");
+
+
+// sequelize.sync().then(() => {
 sequelize.sync({ force: true }).then(() => {
   const port = process.env.PORT || 7000;
   app.listen(port, () => {

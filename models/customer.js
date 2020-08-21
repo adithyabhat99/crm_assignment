@@ -24,7 +24,7 @@ const customer = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 7,
     },
-    last_reminded: {
+    to_remind: {
       type: DataTypes.DATE,
       allowNull: false,
     },
